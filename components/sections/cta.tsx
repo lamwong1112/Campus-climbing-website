@@ -1,29 +1,41 @@
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 
 export function CTASection() {
   return (
-    <section id="contact" className="py-20 sm:py-28 bg-primary/5">
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-        <Card className="bg-gradient-to-br from-primary/10 via-background to-background border-primary/20">
-          <CardHeader>
-            <CardTitle className="text-3xl sm:text-4xl font-semibold tracking-tight">
-              Ready to climb?
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-muted-foreground text-lg max-w-prose">
-              Join Campus Climbing today and be part of a supportive community. First-timer or seasoned climber — we’ve got routes for you.
-            </p>
-          </CardContent>
-          <CardFooter className="gap-3">
-            <Button size="lg">Join up</Button>
-            <Button size="lg" variant="secondary">Login</Button>
-          </CardFooter>
-        </Card>
+    <section id="cta" className="py-16 sm:py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="rounded-xl border bg-card text-card-foreground p-6 sm:p-10 relative overflow-hidden">
+          <div className="absolute inset-0 -z-10 opacity-20 pointer-events-none bg-[radial-gradient(ellipse_at_top,theme(colors.primary/40),transparent_60%)]" />
+          <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-10">
+            <div className="flex-1">
+              <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+                Ready to climb with us?
+              </h2>
+              <p className="text-muted-foreground mt-2">
+                Join Campus Climbing today and get access to classes, community events, and member perks.
+              </p>
+            </div>
+            <div className="w-full md:w-auto">
+              <div className="flex flex-col sm:flex-row gap-2">
+                <Button asChild size="lg" className="w-full sm:w-auto">
+                  <Link href="/join">Join up</Link>
+                </Button>
+                <Button asChild size="lg" variant="secondary" className="w-full sm:w-auto">
+                  <Link href="/#membership">View membership</Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+          <Separator className="my-6" />
+          <p className="text-xs text-muted-foreground">
+            Questions? <Link href="/#contact" className="underline underline-offset-4">Contact us</Link> — we are happy to help.
+          </p>
+        </div>
       </div>
     </section>
-  )
+  );
 }
 
 
