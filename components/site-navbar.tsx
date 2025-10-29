@@ -106,10 +106,10 @@ export function SiteNavbar() {
                     <MenuIcon className="size-5" />
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="p-0 gap-0 w-full max-w-none top-[64px] md:top-16 left-0 right-0 translate-x-0 translate-y-0 mx-0 rounded-none border-x-0">
+                <DialogContent className="p-0 gap-0 w-screen h-[100svh] fixed inset-0 translate-x-0 translate-y-0 mx-0 rounded-none border-0 bg-background/95 backdrop-blur">
                   <DialogTitle className="sr-only">Menu</DialogTitle>
-                  <nav className="p-4">
-                    <ul className="flex flex-col gap-1">
+                  <nav className="h-full w-full flex flex-col items-center justify-evenly py-12">
+                    <ul className="flex flex-col items-center justify-evenly h-full w-full">
                       {[
                         ["About", "/#about"],
                         ["Membership", "/#membership"],
@@ -120,18 +120,18 @@ export function SiteNavbar() {
                         <li key={label as string}>
                           <Link
                             href={href as string}
-                            className="block rounded-md px-3 py-2 text-sm hover:bg-accent hover:text-accent-foreground"
+                            className="block rounded-md px-4 py-2 text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight hover:text-primary"
                           >
                             {label}
                           </Link>
                         </li>
                       ))}
                     </ul>
-                    <div className="mt-4 flex gap-2">
-                      <Button asChild variant="secondary" className="flex-1">
+                    <div className="mt-6 flex w-full max-w-xs mx-auto gap-3">
+                      <Button asChild variant="secondary" className="flex-1 text-lg py-6">
                         <Link href="/login">Login</Link>
                       </Button>
-                      <Button asChild className="flex-1">
+                      <Button asChild className="flex-1 text-lg py-6">
                         <Link href="/join">Join up</Link>
                       </Button>
                     </div>
