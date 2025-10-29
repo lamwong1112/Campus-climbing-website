@@ -106,7 +106,7 @@ export function SiteNavbar() {
                     <MenuIcon className="size-5" />
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="p-0 gap-0 w-screen h-[100svh] fixed inset-0 translate-x-0 translate-y-0 mx-0 rounded-none border-0 bg-background/95 backdrop-blur">
+                <DialogContent className="p-0 gap-0 w-screen h-[100svh] fixed inset-0 left-0 top-0 translate-x-0 translate-y-0 mx-0 rounded-none border-0 bg-background/95 backdrop-blur max-w-none sm:max-w-none">
                   <DialogTitle className="sr-only">Menu</DialogTitle>
                   <nav className="h-full w-full flex flex-col items-center justify-evenly py-12">
                     <ul className="flex flex-col items-center justify-evenly h-full w-full">
