@@ -9,9 +9,9 @@ import { SiteFooter } from "@/components/site-footer";
 
 export default function Home() {
   return (
-    <div className="font-sans">
+    <>
       <SiteNavbar />
-      <main>
+      <main className="font-sans">
         <Hero />
         <TestimonialsMarqueeSection />
         <FeaturesSection />
@@ -20,6 +20,6 @@ export default function Home() {
         <CTASection />
       </main>
       <SiteFooter />
-    </div>
+    </>
   );
 }

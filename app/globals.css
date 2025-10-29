@@ -158,12 +158,19 @@
   }
   html {
     scroll-snap-type: y mandatory;
-    overflow-y: scroll;
     height: 100%;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+    overflow-x: hidden;
   }
   body {
     @apply bg-background text-foreground;
-    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
   }
   @media (prefers-reduced-motion: reduce) {
     html:where(.scroll-smooth) {
@@ -182,11 +189,11 @@
     to { transform: translateX(0); }
   }
   .animate-marquee-left {
-    animation: marquee-left 70s linear infinite;
+    animation: marquee-left 100s linear infinite;
     width: max-content;
   }
   .animate-marquee-right {
-    animation: marquee-right 70s linear infinite;
+    animation: marquee-right 100s linear infinite;
     width: max-content;
   }
   .snap-stop-always {

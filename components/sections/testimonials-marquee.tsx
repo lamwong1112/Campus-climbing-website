@@ -75,15 +75,10 @@ export function TestimonialsMarqueeSection() {
       })
 
       tl.fromTo(
-        rowA,
+        [...rowA, ...rowB],
         { y: 100, opacity: 0 },
-        { y: 0, opacity: 1, ease: "power2.out", duration: 0.6, stagger: 0.08 },
+        { y: 0, opacity: 1, ease: "power2.out", duration: 0.6 },
         0
-      ).fromTo(
-        rowB,
-        { y: 100, opacity: 0 },
-        { y: 0, opacity: 1, ease: "power2.out", duration: 0.6, stagger: 0.08 },
-        0.15
       )
     }, sectionRef)
     return () => ctx.revert()
@@ -91,16 +86,16 @@ export function TestimonialsMarqueeSection() {
 
   return (
     <section ref={sectionRef} className="relative block h-[100svh] w-full flex flex-col justify-evenly snap-start snap-stop-always">
-      <div className="overflow-hidden">
+      <div className="w-full overflow-hidden">
         <div className="tm-row tm-row-a flex gap-4 animate-marquee-left will-change-transform">
-          {[...ROW_A, ...ROW_A].map((t, idx) => (
+          {[...ROW_A, ...ROW_A, ...ROW_A, ...ROW_A].map((t, idx) => (
             <TestimonialCard key={`a-${idx}-${t.name}`} t={t} />
           ))}
         </div>
       </div>
-      <div className="overflow-hidden">
+      <div className="w-full overflow-hidden">
         <div className="tm-row tm-row-b flex gap-4 animate-marquee-right will-change-transform">
-          {[...ROW_B, ...ROW_B].map((t, idx) => (
+          {[...ROW_B, ...ROW_B, ...ROW_B, ...ROW_B].map((t, idx) => (
             <TestimonialCard key={`b-${idx}-${t.name}`} t={t} />
           ))}
         </div>

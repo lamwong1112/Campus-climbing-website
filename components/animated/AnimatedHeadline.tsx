@@ -65,3 +65,4 @@ export function AnimatedHeadline({ lines, className }: AnimatedHeadlineProps) {
 
 
 
+
