@@ -11,7 +11,7 @@ import {
   NavigationMenuList,
 } from "@/components/ui/navigation-menu"
 import { ThemeToggle } from "@/components/theme-toggle"
-import { Dialog, DialogContent, DialogTrigger, DialogTitle } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogTrigger, DialogTitle, DialogClose } from "@/components/ui/dialog"
 import { MenuIcon } from "lucide-react"
 
 export function SiteNavbar() {
@@ -118,22 +118,28 @@ export function SiteNavbar() {
                         ["Contact", "/#contact"],
                       ].map(([label, href]) => (
                         <li key={label as string}>
-                          <Link
-                            href={href as string}
-                            className="block rounded-md px-4 py-2 text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight hover:text-primary"
-                          >
-                            {label}
-                          </Link>
+                          <DialogClose asChild>
+                            <Link
+                              href={href as string}
+                              className="block rounded-md px-4 py-2 text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight hover:text-primary"
+                            >
+                              {label}
+                            </Link>
+                          </DialogClose>
                         </li>
                       ))}
                     </ul>
                     <div className="mt-6 flex w-full max-w-xs mx-auto gap-3">
-                      <Button asChild variant="secondary" className="flex-1 text-lg py-6">
-                        <Link href="/login">Login</Link>
-                      </Button>
-                      <Button asChild className="flex-1 text-lg py-6">
-                        <Link href="/join">Join up</Link>
-                      </Button>
+                      <DialogClose asChild>
+                        <Button asChild variant="secondary" className="flex-1 text-lg py-6">
+                          <Link href="/login">Login</Link>
+                        </Button>
+                      </DialogClose>
+                      <DialogClose asChild>
+                        <Button asChild className="flex-1 text-lg py-6">
+                          <Link href="/join">Join up</Link>
+                        </Button>
+                      </DialogClose>
                     </div>
                   </nav>
                 </DialogContent>
