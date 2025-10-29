@@ -17,6 +17,7 @@ import { MenuIcon } from "lucide-react"
 export function SiteNavbar() {
   const [isHidden, setIsHidden] = useState(false)
   const [isMounted, setIsMounted] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const lastScrollRef = useRef(0)
 
   useEffect(() => {
@@ -100,7 +101,7 @@ export function SiteNavbar() {
           {/* Mobile menu */}
           {isMounted && (
             <div className="lg:hidden">
-              <Dialog>
+              <Dialog open={isMenuOpen} onOpenChange={setIsMenuOpen}>
                 <DialogTrigger asChild>
                   <Button size="icon" variant="ghost" aria-label="Open menu">
                     <MenuIcon className="size-5" />
@@ -116,18 +117,46 @@ export function SiteNavbar() {
                         ["Classes", "/#classes"],
                         ["Shop", "/#shop"],
                         ["Contact", "/#contact"],
-                      ].map(([label, href]) => (
-                        <li key={label as string}>
-                          <DialogClose asChild>
-                            <Link
-                              href={href as string}
-                              className="block rounded-md px-4 py-2 text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight hover:text-primary"
-                            >
-                              {label}
-                            </Link>
-                          </DialogClose>
-                        </li>
-                      ))}
+                      ].map(([label, href]) => {
+                        const hash = (href as string).startsWith('/#') ? (href as string).split('#')[1] : null
+                        if (hash) {
+                          return (
+                            <li key={label as string}>
+                              <a
+                                href={href as string}
+                                className="block rounded-md px-4 py-2 text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight hover:text-primary"
+                                onClick={(e) => {
+                                  e.preventDefault()
+                                  setIsMenuOpen(false)
+                                  setTimeout(() => {
+                                    const el = document.getElementById(hash)
+                                    if (el) {
+                                      el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                                      try {
+                                        window.history.replaceState(null, '', `/#${hash}`)
+                                      } catch {}
+                                    }
+                                  }, 150)
+                                }}
+                              >
+                                {label}
+                              </a>
+                            </li>
+                          )
+                        }
+                        return (
+                          <li key={label as string}>
+                            <DialogClose asChild>
+                              <Link
+                                href={href as string}
+                                className="block rounded-md px-4 py-2 text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight hover:text-primary"
+                              >
+                                {label}
+                              </Link>
+                            </DialogClose>
+                          </li>
+                        )
+                      })}
                     </ul>
                     <div className="mt-6 flex w-full max-w-xs mx-auto gap-3">
                       <DialogClose asChild>
