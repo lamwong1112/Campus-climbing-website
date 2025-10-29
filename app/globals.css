@@ -156,8 +156,14 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100%;
+  }
   body {
     @apply bg-background text-foreground;
+    height: 100%;
   }
   @media (prefers-reduced-motion: reduce) {
     html:where(.scroll-smooth) {
@@ -182,6 +188,12 @@
   .animate-marquee-right {
     animation: marquee-right 70s linear infinite;
     width: max-content;
+  }
+  .snap-stop-always {
+    scroll-snap-stop: always;
+  }
+  section {
+    isolation: isolate;
   }
 }
 

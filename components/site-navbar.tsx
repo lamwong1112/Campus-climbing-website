@@ -1,3 +1,6 @@
+"use client"
+
+import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import {
@@ -11,8 +14,37 @@ import { Dialog, DialogContent, DialogTrigger, DialogTitle } from "@/components/
 import { MenuIcon } from "lucide-react"
 
 export function SiteNavbar() {
+  const [isHidden, setIsHidden] = useState(false)
+  const lastScrollRef = useRef(0)
+
+  useEffect(() => {
+    let ticking = false
+    const handleScroll = () => {
+      const current = window.scrollY || window.pageYOffset
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const last = lastScrollRef.current
+          const delta = current - last
+          const threshold = 8
+          if (Math.abs(delta) > threshold) {
+            if (delta > 0 && current > 80) {
+              setIsHidden(true)
+            } else {
+              setIsHidden(false)
+            }
+            lastScrollRef.current = current
+          }
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
   return (
-    <header className="w-full sticky top-0 z-50 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className={`w-full sticky top-0 z-50 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60 transition-transform duration-300 ${isHidden ? "-translate-y-full" : "translate-y-0"}`}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center gap-4 sm:gap-6">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 shrink-0">

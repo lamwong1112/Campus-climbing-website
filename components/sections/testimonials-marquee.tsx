@@ -90,7 +90,7 @@ export function TestimonialsMarqueeSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="py-16">
+    <section ref={sectionRef} className="relative block h-[100svh] w-full flex flex-col justify-evenly snap-start snap-stop-always">
       <div className="overflow-hidden">
         <div className="tm-row tm-row-a flex gap-4 animate-marquee-left will-change-transform">
           {[...ROW_A, ...ROW_A].map((t, idx) => (
@@ -98,7 +98,7 @@ export function TestimonialsMarqueeSection() {
           ))}
         </div>
       </div>
-      <div className="mt-6 overflow-hidden">
+      <div className="overflow-hidden">
         <div className="tm-row tm-row-b flex gap-4 animate-marquee-right will-change-transform">
           {[...ROW_B, ...ROW_B].map((t, idx) => (
             <TestimonialCard key={`b-${idx}-${t.name}`} t={t} />

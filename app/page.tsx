@@ -9,7 +9,7 @@ import { SiteFooter } from "@/components/site-footer";
 
 export default function Home() {
   return (
-    <div className="font-sans min-h-screen">
+    <div className="font-sans">
       <SiteNavbar />
       <main>
         <Hero />
