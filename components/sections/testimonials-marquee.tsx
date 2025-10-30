@@ -38,8 +38,8 @@ function Stars() {
 
 function TestimonialCard({ t }: { t: Testimonial }) {
   return (
-    <Card className="tm-card min-w-[280px] max-w-[320px] opacity-0 will-change-transform">
-      <CardContent className="pt-6">
+    <Card className="tm-card w-[240px] h-[200px] sm:w-[280px] sm:h-[200px] lg:w-[320px] lg:h-[200px] opacity-0 will-change-transform">
+      <CardContent className="pt-6 h-full flex flex-col justify-evenly">
         <div className="flex items-center gap-3">
           <Avatar>
             <AvatarImage src={t.avatar} alt={t.name} />
@@ -50,7 +50,7 @@ function TestimonialCard({ t }: { t: Testimonial }) {
             <Stars />
           </div>
         </div>
-        <p className="mt-4 text-sm text-muted-foreground">“{t.quote}”</p>
+        <p className="text-sm text-muted-foreground line-clamp-6">“{t.quote}”</p>
       </CardContent>
     </Card>
   )
