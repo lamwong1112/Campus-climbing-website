@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 
-type PassCategory = "day" | "monthly" | "season" | "first-timer" | "share"
+type PassCategory = "day" | "monthly" | "season" | "first-timer" | "share" | "kids"
 
 const membershipData = {
   day: [
@@ -31,6 +31,10 @@ const membershipData = {
     { name: "30 Share Pass", price: "$4,500" },
     { name: "50 Share Pass", price: "$7,000" },
   ],
+  kids: [
+    { name: "1 hour trial", price: "$180" },
+    { name: "Regular Lessons, 4 lessons in one month", price: "$1,100" },
+  ],
 }
 
 const categoryLabels: Record<PassCategory, string> = {
@@ -39,6 +43,7 @@ const categoryLabels: Record<PassCategory, string> = {
   season: "Season Pass",
   "first-timer": "First Timer",
   share: "Share Pass",
+  kids: "Kids",
 }
 
 export function MembershipSection() {
