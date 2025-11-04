@@ -4,6 +4,8 @@ import { FeaturesSection } from "@/components/sections/features";
 import { MembershipSection } from "@/components/sections/membership";
 import { TestimonialsSection } from "@/components/sections/testimonials";
 import { TestimonialsMarqueeSection } from "@/components/sections/testimonials-marquee";
+import { SocialSection } from "@/components/sections/social";
+import { BlogsSection } from "@/components/sections/blogs";
 import { SiteFooter } from "@/components/site-footer";
 
 export default function Home() {
@@ -16,6 +18,8 @@ export default function Home() {
         <FeaturesSection />
         <MembershipSection />
         <TestimonialsSection />
+        <SocialSection />
+        <BlogsSection />
       </main>
       <SiteFooter />
     </>

@@ -70,11 +70,11 @@ export function SiteNavbar() {
           <NavigationMenu viewport={false}>
             <NavigationMenuList>
               {[
-                ["About", "/#about"],
+                ["The Walls", "/#walls"],
                 ["Membership", "/#membership"],
-                ["Classes", "/#classes"],
                 ["Shop", "/#shop"],
-                ["Contact", "/#contact"],
+                ["Social", "/#social"],
+                ["Blog", "/#blogs"],
               ].map(([label, href]) => (
                 <NavigationMenuItem key={label}>
                   <NavigationMenuLink href={href as string} className="px-3 py-2">
@@ -112,11 +112,11 @@ export function SiteNavbar() {
                   <nav className="h-full w-full flex flex-col items-center justify-evenly py-12">
                     <ul className="flex flex-col items-center justify-evenly h-full w-full">
                       {[
-                        ["About", "/#about"],
+                        ["The Walls", "/#walls"],
                         ["Membership", "/#membership"],
-                        ["Classes", "/#classes"],
                         ["Shop", "/#shop"],
-                        ["Contact", "/#contact"],
+                        ["Social", "/#social"],
+                        ["Blog", "/#blogs"],
                       ].map(([label, href]) => {
                         const hash = (href as string).startsWith('/#') ? (href as string).split('#')[1] : null
                         if (hash) {
