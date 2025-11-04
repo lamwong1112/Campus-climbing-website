@@ -50,9 +50,9 @@ export function MembershipSection() {
   const [activeCategory, setActiveCategory] = useState<PassCategory>("day")
 
   return (
-    <section id="membership" className="relative block min-h-[100svh] w-full bg-background flex items-start snap-start snap-stop-always overflow-y-auto">
+    <section id="membership" className="relative block min-h-[100svh] w-full bg-background flex items-center justify-center snap-start snap-stop-always overflow-y-auto">
       <div className="mx-auto max-w-7xl px-4 sm:px-4 md:px-6 lg:px-8 w-full py-8 sm:py-12">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto w-full">
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight mb-6 sm:mb-8">Membership</h2>
           
           {/* Category Buttons */}
