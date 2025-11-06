@@ -47,7 +47,7 @@ export function Hero() {
   }, [])
 
   return (
-    <section className="relative block h-[100svh] w-full -mt-16 snap-start snap-stop-always overflow-hidden">
+    <section className="relative block h-[100svh] w-full -mt-16 overflow-hidden">
       {/* Video Background */}
       <div ref={containerRef} className="absolute inset-0 -z-10 w-full h-full overflow-hidden">
         <video

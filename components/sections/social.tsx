@@ -65,9 +65,9 @@ export function SocialSection() {
   return (
     <section
       id="social"
-      className="relative block min-h-[100svh] w-full bg-background flex items-start justify-center snap-start snap-stop-always py-12 sm:py-16"
+      className="relative block min-h-[100svh] w-full bg-background flex items-start justify-center py-12 sm:py-16"
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-4 md:px-6 lg:px-8 w-full">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mb-8 sm:mb-12">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight">Social</h2>
         </div>
@@ -84,13 +84,13 @@ export function SocialSection() {
           </Button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-3">
           {socialPosts.map((post) => (
             <Card
               key={post.id}
-              className="flex h-full min-h-[420px] sm:min-h-[440px] lg:min-h-[460px] flex-col overflow-hidden border-border/60 bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/75"
+              className="flex h-full flex-col overflow-hidden border-border/60 bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/75"
             >
-              <CardContent className="flex flex-1 flex-col gap-4 p-4 sm:p-6">
+              <CardContent className={`flex flex-1 flex-col p-4 sm:p-6 ${post.type === "thread" ? "gap-3 sm:gap-4" : "gap-4 sm:gap-6"}`}>
                 {post.type === "image" && post.image && (
                   <div className="relative h-56 overflow-hidden rounded-xl">
                     <Image

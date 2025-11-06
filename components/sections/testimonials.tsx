@@ -1,12 +1,6 @@
 import Image from "next/image"
 
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel"
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 
@@ -67,9 +61,9 @@ export function TestimonialsSection() {
   return (
     <section
       id="shop"
-      className="relative block min-h-[100svh] w-full bg-background flex items-start justify-center snap-start snap-stop-always py-10 sm:py-14"
+      className="relative block min-h-[100svh] w-full bg-background flex items-start justify-center py-10 sm:py-14"
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-4 md:px-6 lg:px-8 w-full">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-8 sm:mb-12">Shop</h2>
 
         <div className="relative">
@@ -77,11 +71,11 @@ export function TestimonialsSection() {
             opts={{ align: "start", loop: false, slidesToScroll: 1 }}
             className="w-full"
           >
-            <CarouselContent className="-ml-4 lg:-ml-6 pr-10 sm:pr-6">
+            <CarouselContent className="-mx-4 lg:-mx-6">
             {products.map((product) => (
               <CarouselItem
                 key={product.id}
-                  className="pl-4 lg:pl-6 pr-8 sm:pr-6 basis-full sm:basis-1/2 lg:basis-1/3"
+                  className="px-4 lg:px-6 basis-[80%] sm:basis-[40%] lg:basis-[26%] xl:basis-[22%]"
               >
                 <Card className="flex h-full flex-col overflow-hidden border-border/60 bg-card hover:shadow-lg transition-shadow">
                   <div className="relative w-full aspect-square overflow-hidden bg-muted">
@@ -120,8 +114,6 @@ export function TestimonialsSection() {
               </CarouselItem>
             ))}
             </CarouselContent>
-            <CarouselPrevious className="hidden sm:flex -left-10" />
-            <CarouselNext className="hidden sm:flex -right-10" />
           </Carousel>
           <div className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-background via-background/60 to-transparent sm:hidden" />
         </div>

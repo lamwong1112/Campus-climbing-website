@@ -104,9 +104,9 @@ export function FeaturesSection() {
   return (
     <section
       id="walls"
-      className="relative block min-h-[100svh] w-full bg-background flex items-start justify-center snap-start snap-stop-always py-12 sm:py-16"
+      className="relative block min-h-[100svh] w-full bg-background flex items-start justify-center py-12 sm:py-16"
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-4 md:px-6 lg:px-8 w-full">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col gap-3 sm:gap-4 md:flex-row md:items-end md:justify-between mb-8">
           <div className="max-w-2xl">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight">The Walls</h2>

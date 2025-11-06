@@ -4,8 +4,8 @@ import { Separator } from "@/components/ui/separator";
 
 export function CTASection() {
   return (
-    <section id="cta" className="relative block h-[100svh] w-full flex items-center snap-start snap-stop-always">
-      <div className="mx-auto max-w-7xl px-4 sm:px-4 md:px-6 lg:px-8 w-full">
+    <section id="cta" className="relative block h-[100svh] w-full flex items-center">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="rounded-xl border bg-card text-card-foreground p-6 sm:p-10 relative overflow-hidden">
           <div className="absolute inset-0 -z-10 opacity-20 pointer-events-none bg-[radial-gradient(ellipse_at_top,theme(colors.primary/40),transparent_60%)]" />
           <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-10">

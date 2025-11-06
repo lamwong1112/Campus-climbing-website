@@ -170,7 +170,7 @@ export function TestimonialsMarqueeSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="relative block h-[100svh] w-full flex flex-col justify-evenly snap-start snap-stop-always">
+    <section ref={sectionRef} className="relative block h-[100svh] w-full flex flex-col justify-evenly">
       <div className="w-full overflow-hidden">
         <div className="tm-row tm-row-a flex gap-4 animate-marquee-left will-change-transform">
           {[...ROW_A, ...ROW_A, ...ROW_A, ...ROW_A].map((t, idx) => (

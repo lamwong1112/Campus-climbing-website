@@ -25,8 +25,8 @@ export function SiteFooter() {
   }, [])
 
   return (
-    <footer className="relative block h-[100svh] w-full border-t snap-start snap-stop-always">
-      <div className="mx-auto max-w-7xl px-4 sm:px-4 md:px-6 lg:px-8 w-full h-full flex flex-col justify-end gap-4 py-10">
+    <footer className="relative block h-[100svh] w-full border-t">
+      <div className="w-full px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-end gap-4 py-10">
         <div 
           ref={bgRef}
           className="rounded-xl border text-card-foreground p-8 sm:p-12 relative overflow-hidden min-h-[320px] flex-1 flex flex-col justify-center" 

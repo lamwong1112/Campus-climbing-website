@@ -1,14 +1,9 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import Image from "next/image"
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel"
 import { Card, CardContent } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
 
 // Placeholder blog data structure - will be replaced with API later
 type BlogPost = {
@@ -65,63 +60,79 @@ const blogPosts: BlogPost[] = [
 ]
 
 export function BlogsSection() {
+  const [visibleRows, setVisibleRows] = useState(1)
+  const [columns, setColumns] = useState(1)
+
+  useEffect(() => {
+    const determineColumns = () => {
+      const width = window.innerWidth
+      if (width >= 1280) {
+        setColumns(4)
+        return
+      }
+      if (width >= 1024) {
+        setColumns(3)
+        return
+      }
+      if (width >= 640) {
+        setColumns(2)
+        return
+      }
+      setColumns(1)
+    }
+
+    determineColumns()
+    window.addEventListener("resize", determineColumns)
+    return () => window.removeEventListener("resize", determineColumns)
+  }, [])
+
+  const itemsPerRow = columns || 1
+  const visibleCount = Math.min(blogPosts.length, visibleRows * itemsPerRow)
+  const canShowMore = visibleCount < blogPosts.length
+
   return (
-    <section id="blogs" className="relative block min-h-[100svh] w-full bg-background flex items-center justify-center snap-start snap-stop-always overflow-y-auto py-12 sm:py-16">
-      <div className="mx-auto max-w-7xl px-4 sm:px-4 md:px-6 lg:px-8 w-full">
-        {/* Section Title */}
+    <section id="blogs" className="relative block min-h-[100svh] w-full bg-background flex items-center justify-center overflow-y-auto py-12 sm:py-16">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-8 sm:mb-12">Blogs</h2>
-        
-        {/* Carousel Container */}
-        <div className="relative">
-          <Carousel
-            opts={{
-              align: "start",
-              loop: false,
-              slidesToScroll: 1,
-            }}
-            className="w-full"
-          >
-            <CarouselContent className="-ml-4 md:-ml-4 pr-4 md:pr-0">
-              {blogPosts.map((post) => (
-                <CarouselItem key={post.id} className="pl-4 md:pl-4 basis-[85%] sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">
-                  <Card className="h-full flex flex-col overflow-hidden hover:shadow-lg transition-shadow">
-                    {/* Blog Image */}
-                    <div className="relative w-full aspect-video overflow-hidden bg-muted">
-                      <Image
-                        src={post.image}
-                        alt={post.title}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
-                      />
-                    </div>
-                    
-                    {/* Card Content */}
-                    <CardContent className="flex flex-col flex-1 p-4 sm:p-6">
-                      {/* Title */}
-                      <h3 className="font-bold text-base sm:text-lg mb-2 line-clamp-2">
-                        {post.title}
-                      </h3>
-                      
-                      {/* Description */}
-                      <p className="text-sm sm:text-base text-muted-foreground mb-4 line-clamp-2 flex-1">
-                        {post.description}
-                      </p>
-                      
-                      {/* Metadata */}
-                      <div className="flex items-center justify-between text-xs sm:text-sm text-muted-foreground pt-2 border-t border-border">
-                        <span>{post.category}</span>
-                        <span>{post.readTime}</span>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="hidden md:flex -left-12" />
-            <CarouselNext className="hidden md:flex -right-12" />
-          </Carousel>
+
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-6">
+          {blogPosts.slice(0, visibleCount).map((post) => (
+            <Card key={post.id} className="flex h-full flex-col overflow-hidden hover:shadow-lg transition-shadow">
+              <div className="relative w-full aspect-video overflow-hidden bg-muted">
+                <Image
+                  src={post.image}
+                  alt={post.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                />
+              </div>
+
+              <CardContent className="flex flex-col flex-1 p-4 sm:p-6">
+                <h3 className="font-bold text-base sm:text-lg mb-2 line-clamp-2">
+                  {post.title}
+                </h3>
+
+                <p className="text-sm sm:text-base text-muted-foreground mb-4 line-clamp-2 flex-1">
+                  {post.description}
+                </p>
+
+                <div className="flex items-center justify-between text-xs sm:text-sm text-muted-foreground pt-2 border-t border-border">
+                  <span>{post.category}</span>
+                  <span>{post.readTime}</span>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
         </div>
+
+        {canShowMore && (
+          <div className="mt-8 flex justify-center">
+            <Button type="button" onClick={() => setVisibleRows((rows) => rows + 1)}>
+              More Blogs
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   )
