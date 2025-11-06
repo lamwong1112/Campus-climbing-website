@@ -36,7 +36,7 @@ export function SiteFooter() {
             <div className="max-w-3xl md:max-w-4xl mx-auto text-center space-y-6 md:space-y-8 relative z-10">
             <p className="text-base sm:text-lg md:text-xl font-semibold tracking-[0.12em] uppercase text-white">Ready to climb with us?</p>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-tight text-white">
-              See you at the top!
+              See You at the Top!
             </h2>
             <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
               <Button asChild size="lg" className="min-w-[160px]">
