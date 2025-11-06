@@ -1,12 +1,14 @@
 "use client"
 
 import Image from "next/image"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 
 const wallImage = "https://res.cloudinary.com/dea6bl2fy/image/upload/v1762424984/the-wall-background-690c7875dc853_lurhbf.webp"
 
 export function FeaturesSection() {
   const scrollRef = useRef<HTMLDivElement | null>(null)
+  const [hasInteracted, setHasInteracted] = useState(false)
+  const hintBackTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
     const container = scrollRef.current
@@ -16,9 +18,14 @@ export function FeaturesSection() {
     let startX = 0
     let scrollStart = 0
 
+    const markInteraction = () => {
+      setHasInteracted(true)
+    }
+
     const handlePointerDown = (event: PointerEvent) => {
       if (event.pointerType === "touch") return
       event.preventDefault()
+      markInteraction()
       isDragging = true
       startX = event.clientX
       scrollStart = container.scrollLeft
@@ -44,6 +51,7 @@ export function FeaturesSection() {
       if (Math.abs(event.deltaY) > Math.abs(event.deltaX)) {
         container.scrollLeft += event.deltaY
         event.preventDefault()
+        markInteraction()
       }
     }
 
@@ -52,6 +60,7 @@ export function FeaturesSection() {
     container.addEventListener("pointerup", endDrag)
     container.addEventListener("pointercancel", endDrag)
     container.addEventListener("pointerleave", endDrag)
+    container.addEventListener("scroll", markInteraction, { passive: true })
 
     return () => {
       container.removeEventListener("pointerdown", handlePointerDown)
@@ -59,6 +68,7 @@ export function FeaturesSection() {
       container.removeEventListener("pointerup", endDrag)
       container.removeEventListener("pointercancel", endDrag)
       container.removeEventListener("pointerleave", endDrag)
+      container.removeEventListener("scroll", markInteraction)
     }
   }, [])
 
@@ -70,12 +80,24 @@ export function FeaturesSection() {
       if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return
       container.scrollLeft += event.deltaY
       event.preventDefault()
+      setHasInteracted(true)
     }
 
     container.addEventListener("wheel", handleWheel, { passive: false })
 
     return () => {
       container.removeEventListener("wheel", handleWheel)
+    }
+  }, [])
+
+  useEffect(() => {
+    const container = scrollRef.current
+    if (!container) return
+
+    return () => {
+      if (hintBackTimeoutRef.current) {
+        clearTimeout(hintBackTimeoutRef.current)
+      }
     }
   }, [])
 
@@ -100,6 +122,9 @@ export function FeaturesSection() {
         <div className="relative">
           <div
             ref={scrollRef}
+            onTouchStart={() => {
+              setHasInteracted(true)
+            }}
             className="group overflow-x-auto overflow-y-hidden rounded-3xl border border-border/50 bg-card/40 shadow-inner scrollbar-thin scrollbar-thumb-border/40 scrollbar-track-transparent cursor-grab"
           >
             <div className="relative h-[400px] sm:h-[420px] lg:h-[480px]">
@@ -117,6 +142,11 @@ export function FeaturesSection() {
               </div>
 
               <div className="absolute inset-x-0 bottom-6">
+              </div>
+              <div className="absolute bottom-12 left-9 flex items-center gap-2 rounded-full bg-black/55 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-white shadow-md backdrop-blur">
+                <span>⇠</span>
+                Swipe to explore
+                <span>⇢</span>
               </div>
             </div>
           </div>
