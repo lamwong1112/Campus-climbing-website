@@ -28,16 +28,12 @@ const BLOG_SLUGS_QUERY = groq`*[_type == "post" && defined(slug.current)]{
   "slug": slug.current
 }`
 
-type BlogPageProps = {
-  params: { slug: string }
-}
-
 export async function generateStaticParams() {
   const slugs: { slug: string }[] = await client.fetch(BLOG_SLUGS_QUERY)
   return slugs.map(({ slug }) => ({ slug }))
 }
 
-export default async function BlogPostPage({ params }: BlogPageProps) {
+export default async function BlogPostPage({ params }: { params: { slug: string } }) {
   const post = await client.fetch<BlogPost | null>(BLOG_POST_QUERY, { slug: params.slug })
 
   if (!post) {
