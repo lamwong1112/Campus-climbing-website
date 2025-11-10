@@ -1,6 +1,7 @@
 import Image from "next/image"
 import { notFound } from "next/navigation"
 import { groq } from "next-sanity"
+import type { PageProps } from "next"
 
 import { client } from "@/sanity/lib/client"
 
@@ -33,8 +34,11 @@ export async function generateStaticParams() {
   return slugs.map(({ slug }) => ({ slug }))
 }
 
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
-  const post = await client.fetch<BlogPost | null>(BLOG_POST_QUERY, { slug: params.slug })
+type BlogPageProps = PageProps<{ slug: string }>
+
+export default async function BlogPostPage({ params }: BlogPageProps) {
+  const { slug } = await params
+  const post = await client.fetch<BlogPost | null>(BLOG_POST_QUERY, { slug })
 
   if (!post) {
     notFound()
