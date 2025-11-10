@@ -4,10 +4,22 @@ import { groq } from "next-sanity"
 
 import { client } from "@/sanity/lib/client"
 
+type SanityPortableTextChild = {
+  _key?: string
+  _type?: string
+  text?: string
+}
+
+type SanityPortableTextBlock = {
+  _key?: string
+  _type: string
+  children?: SanityPortableTextChild[]
+}
+
 type BlogPost = {
   title: string
   description?: string
-  body?: string
+  body?: SanityPortableTextBlock[]
   image?: string
   category?: string
   readTime?: string
@@ -87,12 +99,13 @@ export default async function BlogPostPage({
 
       {post.body && (
         <div className="prose prose-invert max-w-none prose-headings:font-semibold prose-p:text-muted-foreground">
-          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-          {(post.body as any[]).map((block, index) => {
+          {(post.body ?? []).map((block, index) => {
             if (block._type === "block") {
               return (
                 <p key={block._key ?? index} className="mb-4 text-base leading-relaxed text-muted-foreground">
-                  {block.children?.map((child: { text: string }) => child.text).join("")}
+                  {(block.children ?? [])
+                    .map((child) => child.text ?? "")
+                    .join("")}
                 </p>
               )
             }
