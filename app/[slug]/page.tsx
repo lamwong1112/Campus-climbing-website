@@ -33,15 +33,12 @@ export async function generateStaticParams() {
   return slugs.map(({ slug }) => ({ slug }))
 }
 
-type MaybePromise<T> = T | Promise<T>
-
-type BlogPageProps = {
-  params: MaybePromise<{ slug: string }>
-}
-
-export default async function BlogPostPage({ params }: BlogPageProps) {
-  const resolvedParams = await params
-  const { slug } = resolvedParams
+export default async function BlogPostPage({
+  params,
+}: {
+  params: { slug: string } | Promise<{ slug: string }>
+}) {
+  const { slug } = await params
   const post = await client.fetch<BlogPost | null>(BLOG_POST_QUERY, { slug })
 
   if (!post) {
