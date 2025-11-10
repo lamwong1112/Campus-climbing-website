@@ -1,9 +1,8 @@
 "use client"
 
 import { useEffect, useRef } from "react"
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
 
 export function SiteFooter() {
   const bgRef = useRef<HTMLDivElement>(null)

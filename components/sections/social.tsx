@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image"
+import Link from "next/link"
 
 import { Card, CardContent } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -80,7 +81,7 @@ export function SocialSection() {
             </p>
           </div>
           <Button asChild size="lg" className="min-w-[160px]" aria-label="Join the members-only social platform">
-            <a href="/join">Join the community</a>
+            <Link href="/join">Join the community</Link>
           </Button>
         </div>
 
